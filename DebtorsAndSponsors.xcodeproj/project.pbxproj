@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B33E94722D5E758001CB3B2 /* UIAlertController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B33E94622D5E758001CB3B2 /* UIAlertController+Utils.swift */; };
+		4B33E94A22D5E783001CB3B2 /* TextConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B33E94922D5E783001CB3B2 /* TextConstants.swift */; };
 		4B86764C2295476500FC3CE7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B86764B2295476500FC3CE7 /* AppDelegate.swift */; };
 		4B86764E2295476500FC3CE7 /* CalculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B86764D2295476500FC3CE7 /* CalculatorViewController.swift */; };
 		4B8676512295476500FC3CE7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B86764F2295476500FC3CE7 /* Main.storyboard */; };
@@ -20,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4B33E94622D5E758001CB3B2 /* UIAlertController+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Utils.swift"; sourceTree = "<group>"; };
+		4B33E94922D5E783001CB3B2 /* TextConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextConstants.swift; sourceTree = "<group>"; };
 		4B8676482295476500FC3CE7 /* DebtorsAndSponsors.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DebtorsAndSponsors.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B86764B2295476500FC3CE7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B86764D2295476500FC3CE7 /* CalculatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorViewController.swift; sourceTree = "<group>"; };
@@ -45,6 +49,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B33E94822D5E76F001CB3B2 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				4B33E94922D5E783001CB3B2 /* TextConstants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 		4B86763F2295476500FC3CE7 = {
 			isa = PBXGroup;
 			children = (
@@ -70,6 +82,7 @@
 				4B867667229687DC00FC3CE7 /* Cell */,
 				4B867666229687C400FC3CE7 /* Models */,
 				4B86766A229927F200FC3CE7 /* Extensions */,
+				4B33E94822D5E76F001CB3B2 /* Constants */,
 				4B8676612295486700FC3CE7 /* Supporting */,
 				4B8676572295476700FC3CE7 /* Info.plist */,
 			);
@@ -106,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				4B86766C229928B100FC3CE7 /* UIStoryboard+utils.swift */,
+				4B33E94622D5E758001CB3B2 /* UIAlertController+Utils.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -194,8 +208,10 @@
 				4B86765E229547F400FC3CE7 /* Friend.swift in Sources */,
 				4B86766D229928B100FC3CE7 /* UIStoryboard+utils.swift in Sources */,
 				4B86764E2295476500FC3CE7 /* CalculatorViewController.swift in Sources */,
+				4B33E94A22D5E783001CB3B2 /* TextConstants.swift in Sources */,
 				4B86764C2295476500FC3CE7 /* AppDelegate.swift in Sources */,
 				4B8676602295482600FC3CE7 /* Refund.swift in Sources */,
+				4B33E94722D5E758001CB3B2 /* UIAlertController+Utils.swift in Sources */,
 				4B86766322959EAA00FC3CE7 /* DetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
