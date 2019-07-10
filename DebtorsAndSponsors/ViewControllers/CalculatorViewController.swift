@@ -10,7 +10,7 @@ import UIKit
 
 class CalculatorViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
-
+    
     var friends = [Friend]()
     var refunds = [Refund]()
     
@@ -29,15 +29,15 @@ class CalculatorViewController: UIViewController {
     lazy var sponsors: [Friend] = {
         friends.filter { $0.amountSpent > averageSpentByFriend }
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         tableView.dataSource = self
         tableView.delegate = self
     }
     
-// MARK: - IBActions
+    // MARK: - IBActions
     
     @IBAction func onAddButton(_ sender: UIButton!) {
         showAlertViewController()
@@ -47,10 +47,10 @@ class CalculatorViewController: UIViewController {
         performCalculations()
         navigateToDetailsVC()
     }
-   
-// MARK: - FUNCTIONS
     
-     @objc private func navigateToDetailsVC() {
+    // MARK: - FUNCTIONS
+    
+    @objc private func navigateToDetailsVC() {
         guard let controller = UIStoryboard.mainStoryboard?.instantiateVC(DetailsViewController.self) else {
             return
         }
@@ -58,35 +58,46 @@ class CalculatorViewController: UIViewController {
     }
     
     private func showAlertViewController() {
-        let alert = UIAlertController(title: "Fill in all fields", message: "", preferredStyle: .alert)
+        let alert = UIAlertController(title: TextConstants.fillInAlertTitle, message: "", preferredStyle: .alert)
         
         alert.addTextField { nameTextField in
-            nameTextField.placeholder = "Enter your friend name"
+            nameTextField.placeholder = TextConstants.enterFriendName
+            nameTextField.autocapitalizationType = .sentences
             nameTextField.keyboardType = .default
         }
         
         alert.addTextField { amountTextField in
-            amountTextField.placeholder = "Enter the amount spent"
+            amountTextField.placeholder = TextConstants.enterAmountSpent
             amountTextField.keyboardType = .decimalPad
             amountTextField.delegate = self
         }
         
-        let doneAction = UIAlertAction(title: "Done", style: .default) { _ in
-            let name = alert.textFields?.first?.text
+        let doneAction = UIAlertAction(title: TextConstants.done, style: .default) { _ in
+            let name = alert.textFields?.first?.text ?? ""
             let amount = alert.textFields?[1].text ?? ""
             
-            let newFriend = Friend(name: name ?? "", amountSpent: Float(amount) ?? 0.0) //TODO:
+            if name.isEmpty || amount.isEmpty {
+                UIAlertController.showAlert(title: TextConstants.error,
+                                            message: TextConstants.emptyFieldsError,
+                                            controller: self) { [weak self] in
+                                                guard let self = self else {
+                                                    return
+                                                }
+                                                self.showAlertViewController()
+                }
+                return
+            }
+            let newFriend = Friend(name: name, amountSpent: Float(amount) ?? 0.0)
             self.friends.append(newFriend)
             
             self.tableView.reloadData()
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+        let cancelAction = UIAlertAction(title: TextConstants.cancel, style: .cancel) { _ in
         }
         
         alert.addAction(doneAction)
         alert.addAction(cancelAction)
-        
         self.present(alert, animated: true, completion: nil)
     }
     
@@ -114,12 +125,7 @@ class CalculatorViewController: UIViewController {
     
     private func showAlertIfNumOfFriendsLessThanThree(){
         if friends.count <= 2 {
-            let alert = UIAlertController(title: "Error", message: "Enter at least 3 friends' names to calculate expenses", preferredStyle: .alert)
-            let OKAction = UIAlertAction(title: "OK", style: .cancel)
-            
-            alert.addAction(OKAction)
-            
-            self.present(alert, animated: true, completion: nil)
+            UIAlertController.showAlert(title: TextConstants.error, message: TextConstants.enterThreeNames, controller: self)
         }
     }
 }
@@ -175,15 +181,15 @@ extension CalculatorViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let editAction = UITableViewRowAction(style: .normal, title: "Edit", handler: { (action, indexPath) in
+        let editAction = UITableViewRowAction(style: .normal, title: TextConstants.edit, handler: { (action, indexPath) in
             print("edit pressed")
+            // TODO: add editing
         })
         
-        let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete", handler: { (action, indexPath) in
+        let deleteAction = UITableViewRowAction(style: .destructive, title: TextConstants.delete, handler: { (action, indexPath) in
             print("delete pressed")
+            // TODO: add deletion
         })
-        
-        
         return [editAction, deleteAction]
     }
 }
