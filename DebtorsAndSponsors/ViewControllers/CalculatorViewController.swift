@@ -133,7 +133,10 @@ class CalculatorViewController: UIViewController {
 extension CalculatorViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let allowedCharacters = CharacterSet(charactersIn:"0123456789") //TODO: when pasting a String value, it's still possible to insert it
+        let allowedCharacters = CharacterSet(charactersIn:"0123456789")
+        
+        //TODO: when pasting a String value, it's still possible to insert it
+        
         let characterSet = CharacterSet(charactersIn: string)
         return allowedCharacters.isSuperset(of: characterSet)
     }
@@ -165,6 +168,7 @@ extension CalculatorViewController: UITableViewDataSource {
             
             tableView.deleteRows(at: [indexPath], with: .bottom)
             tableView.reloadData()
+            //TODO: row deletion is not happening
         }
     }
 }
@@ -182,13 +186,11 @@ extension CalculatorViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let editAction = UITableViewRowAction(style: .normal, title: TextConstants.edit, handler: { (action, indexPath) in
-            print("edit pressed")
-            // TODO: add editing
+            //TODO: open a card with already existing name and amount, edit it and save back to the same row
         })
         
         let deleteAction = UITableViewRowAction(style: .destructive, title: TextConstants.delete, handler: { (action, indexPath) in
-            print("delete pressed")
-            // TODO: add deletion
+            //TODO:
         })
         return [editAction, deleteAction]
     }
